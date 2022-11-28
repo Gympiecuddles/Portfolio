@@ -14,6 +14,15 @@ const InfoLeft = styled(motion.article)`
     p {
         font-size: 1.8em;
     }
+    @media (max-width: 2066px) {
+        margin: 80px;
+        h2 {
+            font-size: 2.8em;
+        }
+        p {
+            font-size: 1.5em;
+        }
+    }
 `;
 
 const InfoRight = styled(motion.article)`
@@ -25,7 +34,14 @@ const InfoRight = styled(motion.article)`
     a {
         display: block;
         text-decoration: underline;
+        color: #000000;
         cursor: pointer;
+    }
+    @media (max-width: 2066px) {
+        margin: 80px;
+    }
+    @media (max-width: 1368px) {
+        margin: 78px;
     }
 `;
 
@@ -62,7 +78,7 @@ const Text1 = () => {
             </InfoLeft>
             <InfoRight initial={{opacity: 0, x: 500}} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.8 }}>
                 <CrossedOut>Live Site</CrossedOut>
-                <motion.a whileHover={{color: "#fff24e"}}>Github</motion.a>
+                <motion.a whileHover={{color: "#fff24e"}} href="https://github.com/Gympiecuddles/nicks-garage" target="_blank">Github</motion.a>
             </InfoRight>
         </>
     )
@@ -72,12 +88,12 @@ const Text2 = () => {
     return (
         <>
             <InfoLeft initial={{opacity: 0, x: -500}} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.8 }}>
-                <h2>Twisted Thread</h2>
-                <p>Decorative macramé based in Miami.</p>
+                <h2>Your Life Well Lived</h2>
+                <p>Retreats with Wild Dolphins and Whales & Holistic Coaching and Counseling</p>
             </InfoLeft>
             <InfoRight initial={{opacity: 0, x: 500}} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.8 }}>
-                <motion.a whileHover={{color: "#fff24e"}}>Live Site</motion.a>
-                <motion.a whileHover={{color: "#fff24e"}}>Github</motion.a>
+                <CrossedOut>Live Site</CrossedOut>
+                <motion.a whileHover={{color: "#fff24e"}} href="https://github.com/Gympiecuddles/YourLifeWellLived" target="_blank">Github</motion.a>
             </InfoRight>
         </>
     )
@@ -91,8 +107,8 @@ const Text3 = () => {
                 <p>HR consultant based in Delray.</p>
             </InfoLeft>
             <InfoRight initial={{opacity: 0, x: 500}} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.8 }}>
-                <motion.a whileHover={{color: "#fff24e"}}>Live Site</motion.a>
-                <motion.a whileHover={{color: "#fff24e"}}>Github</motion.a>
+                <motion.a whileHover={{color: "#fff24e"}} href="https://gympiecuddles.github.io/hristeam/" target="_blank" >Live Site</motion.a>
+                <motion.a whileHover={{color: "#fff24e"}} href="https://github.com/Gympiecuddles/hristeam" target="_blank">Github</motion.a>
             </InfoRight>
         </>
     )

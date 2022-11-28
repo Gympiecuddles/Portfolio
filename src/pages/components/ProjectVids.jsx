@@ -2,16 +2,33 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-import paint from '../../assets/paint.webm';
-import noise from '../../assets/noise.mp4';
+import paint from '../../assets/paint.webm'
+import hris from '../../assets/HRISteam Demo.webm';
+import life from '../../assets/LifeWellLived Demo.webm';
 
 const CircleVid = styled(motion.video)`
     width: 1100px;
     height: 1100px;
     border-radius: 50%;
     object-fit: cover;
-    filter: brightness(50%);
+    filter: brightness(70%);
     z-index: 0;
+    @media (max-width: 2066px) {
+        width: 1000px;
+        height: 1000px;
+    }
+    @media (max-width: 1966px) {
+        width: 900px;
+        height: 900px;
+    }
+    @media (max-width: 1574px) {
+        width: 800px;
+        height: 800px;
+    }
+    @media (max-width: 1474px) {
+        width: 700px;
+        height: 700px;
+    }
 `;
 
 const Video0 = () => {
@@ -51,7 +68,7 @@ const Video2 = () => {
         autoPlay 
         loop 
         mute>
-            <source src={noise} type="video/webm" />
+            <source src={life} type="video/webm" />
         </CircleVid>
     )
 }
@@ -65,7 +82,7 @@ const Video3 = () => {
         autoPlay 
         loop 
         mute>
-            <source src={paint} type="video/webm" />
+            <source src={hris} type="video/webm" />
         </CircleVid>
     )
 }

@@ -59,6 +59,9 @@ const TechBox = styled.div`
         background-color: #fcfff7;
       }
     }
+    @media (max-width: 2424px) {
+      width: 700px;
+    }
 `;
 
 const Diamond = styled(GiDiamonds)`

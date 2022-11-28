@@ -27,6 +27,34 @@ const TopBox = styled(motion.section)`
     -webkit-backdrop-filter: blur( 13px );
     border-radius: 50%;
   }
+  @media (max-width: 2066px) {
+    height: 1000px;
+    span {
+      width: 1000px;
+      height: 1000px;
+    }
+  }
+  @media (max-width: 1966px) {
+    height: 900px;
+    span {
+      width: 900px;
+      height: 900px;
+    }
+  }
+  @media (max-width: 1574px) {
+    height: 800px;
+    span {
+      width: 800px;
+      height: 800px;
+    }
+  }
+  @media (max-width: 1474px) {
+    height: 700px;
+    span {
+      width: 700px;
+      height: 700px;
+    }
+  }
 `;
 
 const Projects = styled(motion.div)`
@@ -56,6 +84,26 @@ const Projects = styled(motion.div)`
     }
     i:hover {
       box-shadow: 0 0 10px 0 rgb(255, 255, 255);
+    }
+  }
+  @media (max-width: 2066px) {
+    width: 900px;
+  }
+  @media (max-width: 1966px) {
+    width: 800px;
+  }
+  @media (max-width: 1574px) {
+    width: 750px;
+    p {
+      width: 140px;
+      height: 140px;
+    }
+  }
+  @media (max-width: 1474px) {
+    width: 680px;
+    p {
+      width: 130px;
+      height: 130px;
     }
   }
 `;
@@ -157,7 +205,7 @@ export default function Top() {
                 <motion.i 
                   whileHover={{color: "#ffffff", backgroundColor: "#070a00", scale: 1.1}}
                   whileTap={click2}
-                  >Twisted Thread
+                  >Life Well Lived
                 </motion.i>
             </motion.p>
         </Projects>
