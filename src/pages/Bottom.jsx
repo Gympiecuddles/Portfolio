@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { BsArrowUpLeft, BsArrowUpRight, BsArrowDownLeft, BsArrowDownRight } from 'react-icons/bs'
@@ -27,6 +27,9 @@ const BottomBox = styled(motion.section)`
     font-family: "Titillium Web", sans-serif;
     z-index: 0;
   }
+  @media (max-width: 1846px) {
+      height: 960px;
+    }
 `;
 
 const Card1 = styled(motion.div)`
@@ -68,6 +71,19 @@ const Card1 = styled(motion.div)`
         margin-top: 15px;
         font-size: 23px;
         color: #f2fedc;
+      }
+    }
+    @media (max-width: 2424px) {
+      width: 700px;
+    }
+    @media (max-width: 2140px) {
+      width: 600px;
+    }
+    @media (max-width: 1846px) {
+      width: 450px;
+      img {
+        width: 410px;
+        height: 630px;
       }
     }
 `;
@@ -112,6 +128,27 @@ const Card2 = styled(motion.div)`
       font-size: 17px;
       color: #fafdf3;
     }
+    @media (max-width: 2424px) {
+      width: 700px;
+    }
+    @media (max-width: 2140px) {
+      width: 600px;
+        p {
+          margin: 10px;
+          margin-left: 50px;
+          margin-right: 50px;
+          font-size: 16px;
+      }  
+    }
+    @media (max-width: 1846px) {
+      width: 450px;
+        p {
+          margin: 5px;
+          margin-left: 40px;
+          margin-right: 40px;
+          font-size: 15px;
+      }  
+    }
 `;
 
 const Card3 = styled(motion.div)`
@@ -124,6 +161,15 @@ const Card3 = styled(motion.div)`
     overflow: hidden;
     cursor: grab;
     z-index: 0;
+    @media (max-width: 2424px) {
+      width: 700px;
+    }
+    @media (max-width: 2140px) {
+      width: 600px;
+    }
+    @media (max-width: 1846px) {
+      width: 450px;
+    }
     `;
 
 const ArrowBox = styled(motion.div)`
@@ -142,6 +188,15 @@ const ArrowBox = styled(motion.div)`
       bottom: -20%;
       font-size: 1.2em;
       color: #888787;
+    }
+    @media (max-width: 2424px) {
+      width: 700px;
+    }
+    @media (max-width: 2140px) {
+      width: 600px;
+    }
+    @media (max-width: 1846px) {
+      width: 450px;
     }
 `;
 
@@ -200,20 +255,66 @@ const Diamond = styled(GiDiamonds)`
 `;
 
 export default function Bottom() {
+
+  //Controls visiblity of ArrowBox
   const [isVisible, setIsVisible] = useState(true);
+
+  //Keeps track of which card should be up front
   const [ZIndex1, setZIndex1] = useState(false);
   const [ZIndex2, setZIndex2] = useState(false);
   const [ZIndex3, setZIndex3] = useState(false);
 
+  //Keeps track of current width
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  //Sets "isVisible" state to false, causing ArrowBox to disapear, connects to card 1
   const handleVisible = () => {setIsVisible(false)};
+
+  //Sets whatever card that was clicked to be up front using state
   const handleZIndex1 = () => {setZIndex1(true); setZIndex2(false); setZIndex3(false);};
   const handleZIndex2 = () => {setZIndex1(false); setZIndex2(true); setZIndex3(false);};
   const handleZIndex3 = () => {setZIndex1(false); setZIndex2(false); setZIndex3(true);};
 
+  //Contrains card's dragable area, is responsive 
+  function debounce(fn, ms) {
+    let timer 
+    return _ => {
+      clearTimeout(timer)
+      timer = setTimeout(_ => {
+        timer = null 
+        fn.apply(this, arguments)
+      }, ms)
+    };
+  }
+  
+  useEffect(() => {
+    const debounceHandleResize = debounce(function handleResize() {
+      setScreenWidth(window.innerWidth);
+    }, 1000);
+
+    window.addEventListener("resize", debounceHandleResize);
+
+      return () => window.removeEventListener("resize", debounceHandleResize);
+  })
+
+  const dragConstraints = (currentWidth) => {
+    if (currentWidth <= 1846){
+      return {top: -280, right: 600, bottom: 355, left: -600 };
+    } else if (currentWidth <= 2140) {
+      return {top: -400, right: 950, bottom: 355, left: -950};
+    } else if (currentWidth <= 2424) {
+      return {top: -400, right: 950, bottom: 305, left: -950};
+    } else {
+      return {top: -400, right: 1100, bottom: 355, left: -1100};
+    }
+  }
+
+  //Enables animation controls for each card
   const cardControls1 = useAnimation();
   const cardControls2 = useAnimation();
   const cardControls3 = useAnimation();
 
+  //Resets position of cards on "reset" button click
   const handleClickReset = () => {
     cardControls1.start({ x: 0, y: 0 });
     cardControls2.start({ x: 0, y: 0 });
@@ -223,10 +324,29 @@ export default function Bottom() {
     setZIndex3(false);
   }
 
+  //Displays cards horizontally on "display" button click, is responsive
   const handleClickDisplay = () => {
-    cardControls1.start({ x: -810, y: 0 });
-    cardControls2.start({ x: 0, y: 0 });
-    cardControls3.start({ x: 810, y: 0 });
+    const width1846 = window.matchMedia("(max-width: 1846px)");
+    const width2140 = window.matchMedia("(max-width: 2140px)");
+    const width2424 = window.matchMedia("(max-width: 2424px)");
+    
+    if (width1846.matches){
+      cardControls1.start({ x: -460, y: 0 });
+      cardControls2.start({ x: 0, y: 0 });
+      cardControls3.start({ x: 460, y: 0 });
+    } else if (width2140.matches) {
+      cardControls1.start({ x: -610, y: 0 });
+      cardControls2.start({ x: 0, y: 0 });
+      cardControls3.start({ x: 610, y: 0 });
+    } else if (width2424.matches) {
+      cardControls1.start({ x: -710, y: 0 });
+      cardControls2.start({ x: 0, y: 0 });
+      cardControls3.start({ x: 710, y: 0 });
+    } else {
+      cardControls1.start({ x: -810, y: 0 });
+      cardControls2.start({ x: 0, y: 0 });
+      cardControls3.start({ x: 810, y: 0 });
+    }
   }
 
   return (
@@ -256,7 +376,7 @@ export default function Bottom() {
         </AnimatePresence>
         <Card3 
             drag
-            dragConstraints={{ top: -400, right: 1100, bottom: 355, left: -1100 }}
+            dragConstraints={dragConstraints(screenWidth)}
             dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
             dragElastic={0.5}
             whileTap={{ cursor: "grabbing", scale: .9}}
@@ -268,7 +388,7 @@ export default function Bottom() {
         </Card3>          
         <Card2 
             drag
-            dragConstraints={{ top: -400, right: 1100, bottom: 355, left: -1100 }}
+            dragConstraints={dragConstraints(screenWidth)}
             dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
             dragElastic={0.5}
             whileTap={{ cursor: "grabbing", scale: .9 }}
@@ -299,7 +419,7 @@ export default function Bottom() {
         </Card2> 
         <Card1 
             drag
-            dragConstraints={{ top: -400, right: 1100, bottom: 355, left: -1100 }}
+            dragConstraints={dragConstraints(screenWidth)}
             dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
             dragElastic={0.5}
             whileTap={{ cursor: "grabbing", scale: .9 }}

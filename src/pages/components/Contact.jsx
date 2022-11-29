@@ -39,6 +39,9 @@ const SocialBox = styled(motion.div)`
       color: #000000;
       cursor: pointer;
     }
+    @media (max-height: 1192px) {
+      top: 10%;
+    }
 `; 
 
 //Motion variants
@@ -56,7 +59,7 @@ const pMotion = {
 
 export default function Contact() {
     const { scrollYProgress } = useViewportScroll();
-    const top = useTransform(scrollYProgress, [0, .5, 1], [1160, 1660, 2120]);
+    const top = useTransform(scrollYProgress, [0, .5, 1], [960, 1660, 2170]);
     const bottom = useTransform(scrollYProgress, [0, .34, .38], [170, 570, 0]);
     const opacity = useTransform(scrollYProgress, [0, .33, .34, .38, .39, .41], [1, 1, 0, 0, .5, 1]);
 

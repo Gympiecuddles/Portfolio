@@ -62,6 +62,18 @@ const TechBox = styled.div`
     @media (max-width: 2424px) {
       width: 700px;
     }
+    @media (max-width: 2140px) {
+      width: 600px;
+    }
+    @media (max-width: 1846px) {
+      width: 450px;
+      ul {
+        padding: 0;
+        li {
+          margin-right: 5px;
+        }
+      }
+    }
 `;
 
 const Diamond = styled(GiDiamonds)`
