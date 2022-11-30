@@ -23,10 +23,30 @@ const EmailBox = styled(motion.a)`
         opacity: 0;
         z-index: 2;
     }
+    @media (max-width: 1790px) {
+      width: 70px;
+      height: 170px;
+      transform: scale(-.8, .8);
+      p {
+        bottom: 40px;
+        right: -240px;
+        font-size: 25px;
+      }
+    }
+    @media (max-width: 1590px) {
+      width: 70px;
+      height: 130px;
+      transform: scale(-.5, .5);
+      p {
+        bottom: 40px;
+        right: -240px;
+        font-size: 25px;
+      }
+    }
 `;
 
 const SocialBox = styled(motion.div)`
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 47.3%;
     display: flex;
@@ -39,8 +59,17 @@ const SocialBox = styled(motion.div)`
       color: #000000;
       cursor: pointer;
     }
-    @media (max-height: 1192px) {
-      top: 10%;
+    @media (max-width: 1846px) {
+      a {
+        padding-left: 10px;
+        font-size: 36px;
+      }
+    }
+    @media (max-width: 1532px) {
+      a {
+        padding-left: 6px;
+        font-size: 32px;
+      }
     }
 `; 
 
@@ -59,7 +88,7 @@ const pMotion = {
 
 export default function Contact() {
     const { scrollYProgress } = useViewportScroll();
-    const top = useTransform(scrollYProgress, [0, .5, 1], [960, 1660, 2170]);
+    const top = useTransform(scrollYProgress, [0, .5, 1], ["82%", "44.5%", "2%"]);
     const bottom = useTransform(scrollYProgress, [0, .34, .38], [170, 570, 0]);
     const opacity = useTransform(scrollYProgress, [0, .33, .34, .38, .39, .41], [1, 1, 0, 0, .5, 1]);
 
