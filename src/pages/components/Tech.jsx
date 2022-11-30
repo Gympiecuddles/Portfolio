@@ -67,10 +67,12 @@ const TechBox = styled.div`
     }
     @media (max-width: 1846px) {
       width: 450px;
+      height: 550px;
       ul {
         padding: 0;
         li {
           margin-right: 5px;
+          height: 80px;
         }
       }
     }

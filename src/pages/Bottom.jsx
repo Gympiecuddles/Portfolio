@@ -16,7 +16,7 @@ const BottomBox = styled(motion.section)`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 1000px;
+  height: 80vh;
   background-color: #e9f0dd60;
   border-radius: 10px;
   z-index: 2;
@@ -27,9 +27,16 @@ const BottomBox = styled(motion.section)`
     font-family: "Titillium Web", sans-serif;
     z-index: 0;
   }
-  @media (max-width: 1846px) {
-      height: 960px;
+  @media (max-width: 2140px) {
+    h2 {
+      margin-top: 35px;
     }
+  }
+  @media (max-width: 1846px) {
+    h2 {
+      margin-top: 10px;
+    }
+  }
 `;
 
 const Card1 = styled(motion.div)`
@@ -81,6 +88,7 @@ const Card1 = styled(motion.div)`
     }
     @media (max-width: 1846px) {
       width: 450px;
+      height: 550px;
       img {
         width: 410px;
         height: 630px;
@@ -122,9 +130,9 @@ const Card2 = styled(motion.div)`
       }
     }
     p {
-      margin: 25px;
-      margin-left: 50px;
-      margin-right: 50px;
+      margin-top: 35px;
+      margin-left: 70px;
+      margin-right: 70px;
       font-size: 17px;
       color: #fafdf3;
     }
@@ -134,7 +142,7 @@ const Card2 = styled(motion.div)`
     @media (max-width: 2140px) {
       width: 600px;
         p {
-          margin: 10px;
+          margin-top: 25px;
           margin-left: 50px;
           margin-right: 50px;
           font-size: 16px;
@@ -142,8 +150,9 @@ const Card2 = styled(motion.div)`
     }
     @media (max-width: 1846px) {
       width: 450px;
+      height: 550px;
         p {
-          margin: 5px;
+          margin: 10px;
           margin-left: 40px;
           margin-right: 40px;
           font-size: 15px;
@@ -168,6 +177,7 @@ const Card3 = styled(motion.div)`
       width: 600px;
     }
     @media (max-width: 1846px) {
+      height: 550px;
       width: 450px;
     }
     `;
@@ -197,6 +207,7 @@ const ArrowBox = styled(motion.div)`
     }
     @media (max-width: 1846px) {
       width: 450px;
+      height: 530px;
     }
 `;
 
@@ -247,6 +258,12 @@ const ButtonBox = styled.div`
     background-color: #000000;
     color: #ffffff;
     cursor: pointer;
+  }
+  @media (max-width: 2140px) {
+    bottom: 35px;
+  }
+  @media (max-width: 1846px) {
+    bottom: 20px;
   }
 `
 
@@ -399,7 +416,7 @@ export default function Bottom() {
           <span>
             <h4><Diamond /> Who am I? <Diamond /></h4>
           </span>          
-          <p style={{marginTop: 65}}>
+          <p>
             Hi I’m Richard! I am a 29-year-old South Florida native whose passion lies in creative, 
             fun and intuitive web development. I am addicted to the process of creation through 
             innovation and am motivated by the outcomes of my work. I draw inspiration from the more 
