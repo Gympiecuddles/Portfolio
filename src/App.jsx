@@ -8,6 +8,7 @@ import Bottom from "./pages/Bottom";
 import Top from "./pages/Top";
 import Contact from "./pages/components/Contact";
 import AnimatedText from './pages/components/AnimatedText';
+import { useRef } from "react";
 
 const HomeBox = styled.div`
   position: relative;
@@ -15,21 +16,6 @@ const HomeBox = styled.div`
   height: 255vh;
   box-sizing: border-box;
   overflow: hidden;
-  @media (max-height: 1282px) {
-    height: 265vh;
-  }
-  @media (max-height: 1226px) {
-    height: 270vh;
-  }
-  @media (max-height: 1210px) {
-    height: 275vh;
-  }
-  @media (max-height: 1192px) {
-    height: 280vh;
-  }
-  @media (max-height: 1167px) {
-    height: 285vh;
-  }
 `;
 
 const Video = styled.video`
@@ -73,28 +59,13 @@ const ContentBox = styled.div`
   height: 255vh;
   z-index: 2;
   background-color: #ffffff00;
-  @media (max-height: 1282px) {
-    height: 265vh;
-  }
-  @media (max-height: 1226px) {
-    height: 270vh;
-  }
-  @media (max-height: 1210px) {
-    height: 275vh;
-  }
-  @media (max-height: 1192px) {
-    height: 280vh;
-  }
-  @media (max-height: 1167px) {
-    height: 285vh;
-  }
 `;
 
 const StyledArrowBox = styled.div`
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
-  top: 1080px;
+  top: 0;
   left: 0;
   width: 200px;
   height: 100px;
@@ -122,8 +93,16 @@ export default function App() {
   const opacity = useTransform(scrollYProgress, [0.4, 0.5, 0.6], [0, 1, 0]);
   
   //website opens at proper place
+  const centerText = useRef(null);
   window.onload = () => {
-    window.scrollTo( 0, 1060 );
+    window.scrollBy(0, 100);
+    setTimeout(() => {
+      centerText.current.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+        inline: 'center'
+      });
+    }, 20);
   };
 
   return (
@@ -133,6 +112,7 @@ export default function App() {
       </Video>
       <Name 
         style={{ scaleY }}
+        ref={centerText}
       >
         <AnimatedText text={'Richard Schembri'} />
       </Name>
@@ -161,7 +141,7 @@ export default function App() {
         <p>Projects</p>
       </ArrowBox>
       <ArrowBox 
-        style={{opacity, top: "2300px"}}
+        style={{opacity, top: "91%"}}
         initial={{color: "#00000000"}}
         animate={{color: "#000000"}}
         transition={{delay: 1, duration: 2}}

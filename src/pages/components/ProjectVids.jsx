@@ -11,7 +11,7 @@ const CircleVid = styled(motion.video)`
     height: 1100px;
     border-radius: 50%;
     object-fit: cover;
-    filter: brightness(70%);
+    filter: brightness(80%);
     z-index: 0;
     @media (max-width: 2066px) {
         width: 1000px;
