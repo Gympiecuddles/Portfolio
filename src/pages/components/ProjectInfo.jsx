@@ -114,7 +114,6 @@ const Text3 = () => {
     )
 }
 export default function ProjectInfo({project}) {
-   console.log(project);
     if (project === 1) {
         return <Text1 />
     } else if (project === 2) {

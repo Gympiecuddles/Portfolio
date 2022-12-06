@@ -22,14 +22,14 @@ const BottomBox = styled(motion.section)`
   z-index: 2;
   h2 {
     align-self: flex-start;
-    margin-top: 60px;
+    margin-top: 20px;
     font-size: 3em;
     font-family: "Titillium Web", sans-serif;
     z-index: 0;
   }
   @media (max-width: 2140px) {
     h2 {
-      margin-top: 35px;
+      margin-top: 15px;
     }
   }
   @media (max-width: 1846px) {
