@@ -1,0 +1,156 @@
+import "@fontsource/titillium-web";
+import styled from "styled-components";
+import { useEffect, useRef } from "react";
+import { motion, useTransform, useViewportScroll } from "framer-motion";
+import { BsArrowUp, BsArrowDown } from "react-icons/bs"
+
+import paint from "../assets/paint.webm";
+import Bottom from "./Bottom";
+import Top from "./Top";
+import Contact from "./components/Contact";
+import AnimatedText from './components/AnimatedText';
+
+const HomeBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 255vh;
+  box-sizing: border-box;
+  overflow: hidden;
+`;
+
+const Video = styled.video`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 255vh;
+    object-fit: cover;
+    z-index: 0;
+`;
+
+const Name = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "Titillium", sans-serif;
+  font-weight: 800;
+  font-size: clamp(60px, 8.5vw, 400px);
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #ffffff;
+  mix-blend-mode: screen;
+  z-index: 1;
+`;
+
+const ContentBox = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 255vh;
+  z-index: 2;
+  background-color: #ffffff00;
+`;
+
+const StyledArrowBox = styled.div`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100px;
+  z-index: 1;
+  p {
+    margin: 10px;
+    font-size: 22px;
+  }
+`;
+const ArrowBox = motion(StyledArrowBox);
+
+const UpArrow = styled(BsArrowUp)`
+  font-size: 60px;
+`;
+
+const DownArrow = styled(BsArrowDown)`
+  font-size: 60px;
+`;
+
+export default function App() {
+  const { scrollYProgress } = useViewportScroll();
+  //for Name 
+  const scaleY = useTransform(scrollYProgress, [0, 0.5, 1], [8, 1, 6.5]);
+  //for Arrows
+  const opacity = useTransform(scrollYProgress, [0.4, 0.5, 0.6], [0, 1, 0]);
+  
+  //website opens at proper place
+  const centerText = useRef(null);
+  
+  useEffect(() => {
+    window.scrollBy(0, 100);
+    setTimeout(() => {
+      centerText.current.scrollIntoView({
+        behavior: 'auto',
+        block: 'center',
+        inline: 'center'
+      });
+    }, 30);
+  });
+
+  return (
+    <HomeBox>
+      <Video autoPlay loop muted>
+        <source src={paint} type="video/mp4" />
+      </Video>
+      <Name 
+        style={{ scaleY }}
+      >
+        <AnimatedText text={'Richard Schembri'} />
+      </Name>
+      <Name
+        style={{
+          scaleY,
+          color: "#fff",
+          backgroundColor: "#f2fedc",
+          mixBlendMode: "multiply"
+        }}
+      >
+        <AnimatedText text={'Richard Schembri'} />
+      </Name>
+      <ContentBox>
+        <Top />
+        <div ref={centerText}></div>
+        <Bottom />
+      </ContentBox>
+      <Contact />
+      <ArrowBox 
+        style={{ opacity }}
+        initial={{color: "#00000000"}}
+        animate={{color: "#000000"}}
+        transition={{delay: 1, duration: 2}}
+      >
+        <UpArrow />
+        <p>Projects</p>
+      </ArrowBox>
+      <ArrowBox 
+        style={{opacity, top: "91%"}}
+        initial={{color: "#00000000"}}
+        animate={{color: "#000000"}}
+        transition={{delay: 1, duration: 2}}
+      >
+        <DownArrow />
+        <p>About</p>
+      </ArrowBox>
+    </HomeBox>
+  );
+}
+
